@@ -1,0 +1,21 @@
+server:
+  port: 51100
+  shutdown: graceful
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: movie-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/moviedb
+    username: ${POSTGRES_USER:admin}
+    password: ${POSTGRES_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

@@ -1,0 +1,25 @@
+server:
+  port: 51200
+  shutdown: graceful
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: booking-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/bookingdb
+    username: ${POSTGRES_USER:admin}
+    password: ${POSTGRES_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+services:
+    movie-service:
+        url: http://localhost:51100/api/v1

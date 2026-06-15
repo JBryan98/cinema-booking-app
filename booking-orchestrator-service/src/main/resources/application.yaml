@@ -1,0 +1,16 @@
+server:
+  port: 51400
+  shutdown: graceful
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: booking-orchestrator-service
+
+
+services:
+  movie-service:
+    url: http://localhost:51100/api/v1
+  booking-service:
+    url: http://localhost:51200/api/v1

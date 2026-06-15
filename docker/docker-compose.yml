@@ -1,0 +1,39 @@
+name: cinema-booking-app
+
+services:
+  movie-service-db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: moviedb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - movie_pgdata:/var/lib/postgresql/18/docker
+    networks:
+      - cinema-network
+
+  booking-service-db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bookingdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - booking_pgdata:/var/lib/postgresql/18/docker
+    networks:
+      - cinema-network
+
+networks:
+  cinema-network:
+    name: cinema-network
+    driver: bridge
+
+volumes:
+  movie_pgdata:
+  booking_pgdata:
