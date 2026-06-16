@@ -2,7 +2,10 @@ package com.jbryan98.bookingapp.orchestrator.application.impl;
 
 import com.jbryan98.bookingapp.orchestrator.api.dto.BookingPlacementResponse;
 import com.jbryan98.bookingapp.orchestrator.api.dto.PlaceBookingRequest;
+import com.jbryan98.bookingapp.orchestrator.application.EventPublisher;
 import com.jbryan98.bookingapp.orchestrator.application.SagaOrchestrator;
+import com.jbryan98.bookingapp.orchestrator.domain.event.BookingConfirmedEvent;
+import com.jbryan98.bookingapp.orchestrator.domain.event.BookingFailedEvent;
 import com.jbryan98.bookingapp.orchestrator.exception.InsufficientSeatsException;
 import com.jbryan98.bookingapp.orchestrator.infrastucture.client.BookingServiceHttpClient;
 import com.jbryan98.bookingapp.orchestrator.infrastucture.client.MovieServiceHttpClient;
@@ -11,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Service
@@ -20,6 +24,7 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
 
     private final MovieServiceHttpClient movieServiceClient;
     private final BookingServiceHttpClient bookingServiceClient;
+    private final EventPublisher eventPublisher;
 
     @Override
     public BookingPlacementResponse placeBooking(PlaceBookingRequest request) {
@@ -67,6 +72,21 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
             log.info("SAGA [4/4] Reserva confirmada con id {}", bookingId);
             //----------------------------------------------------------------
 
+            //----------------------------------------------------------------
+            // Evento Kafka: notificación asíncrona
+            eventPublisher.publishBookingConfirmed(
+                    new BookingConfirmedEvent(
+                            confirmedBooking.id(),
+                            confirmedBooking.screeningId(),
+                            confirmedBooking.customerId(),
+                            confirmedBooking.movieTitle(),
+                            confirmedBooking.totalAmount(),
+                            Instant.now()
+                    )
+            );
+            //----------------------------------------------------------------
+
+
             return new BookingPlacementResponse(
                     confirmedBooking.id(),
                     confirmedBooking.screeningId(),
@@ -85,6 +105,16 @@ public class SagaOrchestratorImpl implements SagaOrchestrator {
             if (bookingId != null) {
                 compensate("cancel_booking", () -> bookingServiceClient.cancelBooking(failureBookingId));
             }
+
+            eventPublisher.publishBookingFailed(
+                    new BookingFailedEvent(
+                            request.customerId(),
+                            currentStep,
+                            ex.getMessage(),
+                            Instant.now()
+                    )
+            );
+
             throw ex;
         }
     }
