@@ -6,6 +6,7 @@ import com.jbryan98.bookingapp.booking.application.BookingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +25,13 @@ public class BookingController {
     private final BookingService service;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<BookingResponse> getBookingById(@PathVariable UUID id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<BookingResponse> createBooking(@Valid @RequestBody BookingRequest bookingRequest) {
         var response = service.create(bookingRequest);
         var location = ServletUriComponentsBuilder
@@ -40,11 +43,13 @@ public class BookingController {
     }
 
     @PatchMapping("/{id}/confirm")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<BookingResponse> confirmBooking(@PathVariable UUID id) {
         return ResponseEntity.ok(service.confirm(id));
     }
 
     @PatchMapping("/{id}/cancel")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<BookingResponse> cancelBooking(@PathVariable UUID id) {
         return ResponseEntity.ok(service.cancel(id));
     }
