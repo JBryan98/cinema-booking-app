@@ -6,6 +6,7 @@ import com.jbryan98.bookingapp.movie.api.dto.ChaosLatencyRequest;
 import com.jbryan98.bookingapp.movie.chaos.ChaosService;
 import com.jbryan98.bookingapp.movie.chaos.ChaosStatusResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/chaos")
+@PreAuthorize("hasRole('ADMIN')") // Solo usuarios con rol ADMIN pueden activar el modo caos
 public class ChaosController {
 
     private final ChaosService chaosService;

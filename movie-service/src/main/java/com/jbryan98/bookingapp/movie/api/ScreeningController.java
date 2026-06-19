@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class ScreeningController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ScreeningResponse> createScreening(@Valid @RequestBody ScreeningRequest request) {
         var response = service.create(request);
         var location = ServletUriComponentsBuilder
@@ -49,12 +51,14 @@ public class ScreeningController {
     }
 
     @PatchMapping("/{id}/reserve")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<ScreeningResponse> reserveScreening(@PathVariable UUID id) throws InterruptedException {
         chaosService.applyCurrentChaos();
         return ResponseEntity.ok(service.reserve(id));
     }
 
     @PatchMapping("/{id}/release")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ScreeningResponse> releaseScreening(@PathVariable UUID id) {
         return ResponseEntity.ok(service.release(id));
     }

@@ -19,3 +19,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # URL del endpoint JWKS del auth-service.
+          # Los Resource Servers descargan la clave pública RSA aquí al iniciar.
+          # La validación de cada JWT se hace localmente (sin llamada por request).
+          jwk-set-uri: http://localhost:50003/oauth2/jwks
+
+          # Opcional: validar también el issuer del token.
+          # Debe coincidir con auth.jwt.issuer configurado en auth-service.
+          # Si se activa, tokens de otros emisores serán rechazados con 401.
+          # issuer-uri: http://localhost:50003
