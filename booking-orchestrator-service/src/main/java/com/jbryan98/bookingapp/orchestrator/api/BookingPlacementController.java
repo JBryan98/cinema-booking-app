@@ -6,6 +6,7 @@ import com.jbryan98.bookingapp.orchestrator.application.SagaOrchestrator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/booking-placements")
+@PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 public class BookingPlacementController {
 
