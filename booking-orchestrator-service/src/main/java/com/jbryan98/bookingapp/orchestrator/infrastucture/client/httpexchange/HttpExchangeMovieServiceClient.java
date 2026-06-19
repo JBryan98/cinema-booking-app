@@ -5,6 +5,7 @@ import com.jbryan98.bookingapp.orchestrator.infrastucture.client.MovieServiceHtt
 import com.jbryan98.bookingapp.orchestrator.infrastucture.client.dto.ScreeningResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientResponseException;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Profile("!circuit-breaker")
 public class HttpExchangeMovieServiceClient implements MovieServiceHttpClient {
     private final MovieServiceHttpExchange exchange;
 

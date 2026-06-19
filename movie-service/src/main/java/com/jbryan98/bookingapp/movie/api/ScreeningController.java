@@ -3,6 +3,7 @@ package com.jbryan98.bookingapp.movie.api;
 import com.jbryan98.bookingapp.movie.api.dto.ScreeningRequest;
 import com.jbryan98.bookingapp.movie.api.dto.ScreeningResponse;
 import com.jbryan98.bookingapp.movie.application.ScreeningService;
+import com.jbryan98.bookingapp.movie.chaos.ChaosService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ScreeningController {
     private final ScreeningService service;
+    private final ChaosService chaosService;
 
     @GetMapping
     public ResponseEntity<Page<ScreeningResponse>> getScreenings(Pageable pageable) {
@@ -47,7 +49,8 @@ public class ScreeningController {
     }
 
     @PatchMapping("/{id}/reserve")
-    public ResponseEntity<ScreeningResponse> reserveScreening(@PathVariable UUID id) {
+    public ResponseEntity<ScreeningResponse> reserveScreening(@PathVariable UUID id) throws InterruptedException {
+        chaosService.applyCurrentChaos();
         return ResponseEntity.ok(service.reserve(id));
     }
 

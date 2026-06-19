@@ -7,12 +7,52 @@ server:
 spring:
   application:
     name: booking-orchestrator-service
+  profiles:
+    active: circuit-breaker
   kafka:
     bootstrap-servers: localhost:29092
-
+  # Configuración necesaria para evitar que Spring Cloud inyecte un CircuitBreaker automaticamente en HttpExchange, lo cual puede interferir con la configuración personalizada de Resilience4j.
+  # El problema que se presenta es que se genera el error: "org.springframework.cloud.client.circuitbreaker.NoFallbackAvailableException: No fallback available."
+  # Este error envuelve la excepción que se recibe desde la llamada al servicio, en este caso, movie-service (reserve-screening) lo que impide que Resilience4j maneje correctamente los reintentos y las excepciones configuradas.
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        enabled: false
 
 services:
   movie-service:
     url: http://localhost:51100/api/v1
   booking-service:
     url: http://localhost:51200/api/v1
+
+resilience4j:
+  retry:
+    instances:
+      reserveScreeningRetry:
+        # Intentos totales: 1 original + 2 reintentos = 3 intentos máximo
+        maxAttempts: 3
+        # Espera entre reintentos — en producción usar backoff exponencial
+        waitDuration: 500ms
+        # Solo reintentar en errores de servidor (5xx) o problemas de red
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.client.ResourceAccessException
+        # Excepciones que NO deben reintentarse (errores del cliente)
+        ignoreExceptions:
+          - org.springframework.web.client.HttpClientErrorException
+  circuitbreaker:
+    instances:
+      reserveScreeningCircuitBreaker:
+        # Ventana deslizante basada en número de llamadas (COUNT_BASED) o en tiempo (TIME_BASED)
+        slidingWindowType: COUNT_BASED
+        # Número de llamadas que forman la ventana de métricas
+        slidingWindowSize: 10
+        # Mínimo de llamadas antes de calcular la tasa de fallo
+        # (evita abrir el circuito con una sola llamada fallida al inicio)
+        minimumNumberOfCalls: 10
+        # Porcentaje de fallos para abrir el circuito (50 = 5 de cada 10 llamadas)
+        failureRateThreshold: 50
+        # Tiempo en estado OPEN antes de pasar a HALF-OPEN para probar recuperación
+        waitDurationInOpenState: 10s
+        # Llamadas de prueba permitidas en HALF-OPEN
+        permittedNumberOfCallsInHalfOpenState: 3

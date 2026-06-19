@@ -22,6 +22,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.UNPROCESSABLE_CONTENT, request);
     }
 
+    @ExceptionHandler(ReserveScreeningFailedByRetriesException.class)
+    protected ResponseEntity<Object> handleReserveScreeningFailedByRetriesException(ReserveScreeningFailedByRetriesException ex, WebRequest request) {
+        log.error("SAGA execution failed: {}", ex.getMessage(), ex);
+        var body = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        body.setTitle("SAGA Failed by Retries in Movie Service -> Reserve Screening");
+        return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
     @ExceptionHandler(InsufficientSeatsException.class)
     protected ResponseEntity<Object> handleInsufficientSeatsException(InsufficientSeatsException ex, WebRequest request) {
         var body = ProblemDetail.forStatusAndDetail(HttpStatus.UNPROCESSABLE_CONTENT, ex.getMessage());
