@@ -51,7 +51,7 @@ public class ScreeningController {
     }
 
     @PatchMapping("/{id}/reserve")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<ScreeningResponse> reserveScreening(@PathVariable UUID id) throws InterruptedException {
         chaosService.applyCurrentChaos();
         return ResponseEntity.ok(service.reserve(id));
