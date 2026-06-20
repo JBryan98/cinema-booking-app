@@ -1,0 +1,967 @@
+{
+  "info": {
+    "_postman_id": "ff472420-8486-4cac-8b4e-3f2ba7728d84",
+    "name": "cinema-booking-app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19118917"
+  },
+  "item": [
+    {
+      "name": "movie-service",
+      "item": [
+        {
+          "name": "movies",
+          "item": [
+            {
+              "name": "getAllMovies",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "createMovie",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 201) {\r",
+                      "    const body = pm.response.json();\r",
+                      "    pm.collectionVariables.set(\"movieId\", body.id);\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getMovieById",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies",
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "updateMovie",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator updt\",\r\n  \"director\": \"Ridley Scott updt\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies",
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "activateMovie",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}/activate",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies",
+                    "{{movieId}}",
+                    "activate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deactivateMovie",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}/deactivate",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies",
+                    "{{movieId}}",
+                    "deactivate"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "deleteMovie",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "movies",
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "screenings",
+          "item": [
+            {
+              "name": "getAllScreenings",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/screenings",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "screenings"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "createScreening",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "if (pm.response.code === 201) {\r",
+                      "    const body = pm.response.json();\r",
+                      "    pm.collectionVariables.set(\"screeningId\", body.id);\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": \"549efc4e-be2a-4126-9025-db222f7734e1\",\r\n    \"room\": \"Sala 1\",\r\n    \"showAt\": \"2026-07-18T16:30:00\",\r\n    \"totalSeats\": 100,\r\n    \"availableSeats\": 100\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/screenings",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "screenings"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getScreeningById",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "screenings",
+                    "{{screeningId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "reserveScreening",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}/reserve",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "screenings",
+                    "{{screeningId}}",
+                    "reserve"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "releaseScreening",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}/release",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "screenings",
+                    "{{screeningId}}",
+                    "release"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "chaos",
+          "item": [
+            {
+              "name": "Chaos Status",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/chaos",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "chaos"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Chaos: Activar Error Rate",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rate\": 0.90\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/chaos/error",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "chaos",
+                    "error"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Chaos: Activar Latencia",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ms\": 6000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/chaos/latency",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "chaos",
+                    "latency"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Chaos: Error en N Intentos",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attempts\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/chaos/error-after",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "chaos",
+                    "error-after"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Chaos: Reset",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{movieServiceUrl}}/api/v1/chaos",
+                  "host": [
+                    "{{movieServiceUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "chaos"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "description": "Endpoints para simular fallos controlados. En este caso se simulan fallos provocados para el servicio de reserva (reserveScreening)."
+        }
+      ]
+    },
+    {
+      "name": "booking-service",
+      "item": [
+        {
+          "name": "createBooking",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    const body = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"bookingId\", body.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"movieTitle\": \"The Dark Knight\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": \"12.00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bookingServiceUrl}}/api/v1/bookings",
+              "host": [
+                "{{bookingServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "bookings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getBookingById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}",
+              "host": [
+                "{{bookingServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "bookings",
+                "{{bookingId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancelBooking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": \"12.00\"\r\n}"
+            },
+            "url": {
+              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}/cancel",
+              "host": [
+                "{{bookingServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "bookings",
+                "{{bookingId}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "confirmBooking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": \"12.00\"\r\n}"
+            },
+            "url": {
+              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}/confirm",
+              "host": [
+                "{{bookingServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "bookings",
+                "{{bookingId}}",
+                "confirm"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "booking-orchestrator",
+      "item": [
+        {
+          "name": "placeBooking",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    const body = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"bookingId\", body.bookingId);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": 12.00\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bookingOrchestratorUrl}}/api/v1/booking-placements",
+              "host": [
+                "{{bookingOrchestratorUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "booking-placements"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancelBooking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bookingOrchestratorUrl}}/api/v1/booking-placements/{{bookingId}}/cancel",
+              "host": [
+                "{{bookingOrchestratorUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "booking-placements",
+                "{{bookingId}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "auth-service",
+      "item": [
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {\r",
+                  "    const body = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"accessToken\", body.access_token);\r",
+                  "    pm.collectionVariables.set(\"refreshToken\", body.refresh_token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{authServiceUrl}}/api/v1/auth/login",
+              "host": [
+                "{{authServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOauth2Jwks",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{authServiceUrl}}/oauth2/jwks",
+              "host": [
+                "{{authServiceUrl}}"
+              ],
+              "path": [
+                "oauth2",
+                "jwks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getActuatorHealth",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{authServiceUrl}}/actuator/health",
+              "host": [
+                "{{authServiceUrl}}"
+              ],
+              "path": [
+                "actuator",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "registerUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"newuser1234\",\r\n  \"password\": \"password123\",\r\n  \"role\": \"USER\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{authServiceUrl}}/api/v1/auth/register",
+              "host": [
+                "{{authServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "refreshToken",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {\r",
+                  "    const body = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"accessToken\", body.access_token);\r",
+                  "    pm.collectionVariables.set(\"refreshToken\", body.refresh_token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{authServiceUrl}}/api/v1/auth/refresh",
+              "host": [
+                "{{authServiceUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "movieServiceUrl",
+      "value": ""
+    },
+    {
+      "key": "bookingServiceUrl",
+      "value": ""
+    },
+    {
+      "key": "bookingOrchestratorUrl",
+      "value": ""
+    },
+    {
+      "key": "authServiceUrl",
+      "value": ""
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "movieId",
+      "value": ""
+    },
+    {
+      "key": "screeningId",
+      "value": ""
+    },
+    {
+      "key": "bookingId",
+      "value": ""
+    }
+  ]
+}
