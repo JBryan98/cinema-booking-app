@@ -27,7 +27,7 @@ VALUES
     ('e0101f34-a3a2-4470-8359-3ad837227bcd', 'Blade Runner', 'Ridley Scott', 'SCI_FI', 117, 'R', TRUE);
 
 INSERT INTO screenings (id, movie_id, room, show_at, total_seats, available_seats, active)
-VALUES ('bf22f406-ff9f-4e66-9075-6ba45ace17a8', '4f18ce60-ad60-407e-9caa-84ae19a55469', 'Sala 1', '2026-06-15 20:30:00', 100, 100, TRUE),
-       ('bf9fcd41-df69-4118-a487-8259628f9dbd', '78dbfd0b-8f83-48e6-8fbc-f98ba0fe7abd', 'Sala 2', '2026-06-15 18:00:00', 100, 100, TRUE),
-       ('ba82db4f-5eaf-46b0-931e-fb8d4282cfbf', '37c68be9-1003-4b02-8e03-ca8c15a0b84e', 'Sala IMAX', '2026-06-16 21:00:00', 100, 100, TRUE),
-       ('fe099645-691d-4a53-99c8-93796d7c8898', 'fe099645-691d-4a53-99c8-93796d7c8898', 'Sala 1', '2026-06-16 17:00:00', 100, 100, TRUE);
+VALUES ('bf22f406-ff9f-4e66-9075-6ba45ace17a8', '4f18ce60-ad60-407e-9caa-84ae19a55469', 'Sala 1', '2026-07-15 20:30:00', 100, 100, TRUE),
+       ('bf9fcd41-df69-4118-a487-8259628f9dbd', '78dbfd0b-8f83-48e6-8fbc-f98ba0fe7abd', 'Sala 2', '2026-07-15 18:00:00', 100, 100, TRUE),
+       ('ba82db4f-5eaf-46b0-931e-fb8d4282cfbf', '37c68be9-1003-4b02-8e03-ca8c15a0b84e', 'Sala IMAX', '2026-07-16 21:00:00', 100, 100, TRUE),
+       ('fe099645-691d-4a53-99c8-93796d7c8898', 'fe099645-691d-4a53-99c8-93796d7c8898', 'Sala 1', '2026-07-16 17:00:00', 100, 100, TRUE);
