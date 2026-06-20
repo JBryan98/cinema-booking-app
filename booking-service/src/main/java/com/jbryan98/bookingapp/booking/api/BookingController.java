@@ -21,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/bookings")
 @RequiredArgsConstructor
-public class BookingController {
+public class BookingController implements BookingControllerDocs{
     private final BookingService service;
 
     @GetMapping("/{id}")
