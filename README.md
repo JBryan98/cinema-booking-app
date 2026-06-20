@@ -45,6 +45,19 @@ Caso de negocio: Plataforma de reserva de cine donde clientes reservan asientos 
 
 ---
 
+--
+## Bases de datos
+
+| Contenedor           | Puerto | Descripción                        |
+|----------------------|--------|------------------------------------|
+| `movie-service-db`   | 5432   | Base de datos de `movie-service`   |
+| `booking-service-db` | 5433   | Base de datos de `booking-service` |
+
+- `movie-service` y `booking-service` cuentan con su propia base de datos PostgreSQL `moviedb` y `bookingdb` respectivamente. Las migraciones se gestionan con Flyway.
+- Las credenciales de acceso a la base de datos son:
+  - Usuario: `admin`
+  - Contraseña: `admin123`
+
 ## Resiliencia
 - `booking-orchestrator-service` Se implementó Retry con CircuitBreaker en el SAGA para el llamado a movie-service
 en el endpoint `/screenings/{id}/reserve`.

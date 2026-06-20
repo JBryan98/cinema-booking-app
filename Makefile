@@ -4,8 +4,8 @@ infra-up:
 	@echo "  Infraestructura levantada. Accesos:"
 	@echo "  ------------------------------------"
 	@echo "  moviedb:   http://localhost:5432"
-	@echo "  bookingdb: http://localhost:5433 (disponible desde modulo 09)"
-	@echo "  kafka_ui:  http://localhost:9000  (disponible desde modulo 10)"
+	@echo "  bookingdb: http://localhost:5433"
+	@echo "  kafka_ui:  http://localhost:9000"
 	@echo ""
 
 infra-down:
