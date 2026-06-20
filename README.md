@@ -11,7 +11,7 @@ Caso de negocio: Plataforma de reserva de cine donde clientes reservan asientos 
 | Tecnología   | Versión     | Uso                        |
 |--------------|-------------|----------------------------|
 | Java         | 25          | Lenguaje base              |
-| Spring Boot  | 4.0.3       | Framework principal        |
+| Spring Boot  | 4.1.0       | Framework principal        |
 | Spring Cloud | 2025.1.0    | Config, Discovery, Gateway |
 | Maven        | 3.9+        | Build tool                 |
 | PostgreSQL   | 18          | Base de datos relacional   |
