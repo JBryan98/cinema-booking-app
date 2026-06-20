@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Slf4j
 public class KafkaEventPublisher implements EventPublisher {
-    static final String TOPIC_BOOKINGS_COMPLETED = "bookings.confirmed";
+    static final String TOPIC_CINEMA_BOOKINGS = "cinema.bookings";
     static final String TOPIC_BOOKINGS_FAILED = "bookings.failed";
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
@@ -20,8 +20,8 @@ public class KafkaEventPublisher implements EventPublisher {
 
     @Override
     public void publishBookingConfirmed(BookingConfirmedEvent event) {
-        kafkaTemplate.send(TOPIC_BOOKINGS_COMPLETED, event.bookingId().toString(), event);
-        log.info("Evento publicado topic: {} , bookingId: {}", TOPIC_BOOKINGS_COMPLETED, event.bookingId());
+        kafkaTemplate.send(TOPIC_CINEMA_BOOKINGS, event.bookingId().toString(), event);
+        log.info("Evento publicado topic: {} , bookingId: {}", TOPIC_CINEMA_BOOKINGS, event.bookingId());
     }
 
     @Override
