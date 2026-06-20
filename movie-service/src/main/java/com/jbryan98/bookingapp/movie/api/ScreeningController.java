@@ -24,7 +24,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/screenings")
 @RequiredArgsConstructor
-public class ScreeningController {
+public class ScreeningController implements ScreeningControllerDocs {
     private final ScreeningService service;
     private final ChaosService chaosService;
 

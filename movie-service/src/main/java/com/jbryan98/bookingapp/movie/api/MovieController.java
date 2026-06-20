@@ -25,7 +25,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/movies")
 @RequiredArgsConstructor
-public class MovieController {
+public class MovieController implements MovieControllerDocs{
     private final MovieService service;
 
     @GetMapping

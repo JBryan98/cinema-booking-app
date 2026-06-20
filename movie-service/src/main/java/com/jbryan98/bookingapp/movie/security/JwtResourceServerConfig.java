@@ -51,6 +51,8 @@ public class JwtResourceServerConfig {
                         .requestMatchers(HttpMethod.GET, "/movies/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/screenings").permitAll()
                         .requestMatchers(HttpMethod.GET, "/screenings/**").permitAll()
+                        // Swagger UI — documentación sin autenticación
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         // Todo lo demás requiere JWT válido
                         .anyRequest().authenticated()
                 )
