@@ -108,7 +108,7 @@ public interface ScreeningControllerDocs {
                                                         "room": "Sala 1",
                                                         "showAt": "2026-07-18T16:30:00",
                                                         "totalSeats": 100,
-                                                        "availableSeats": 150
+                                                        "availableSeats": 100
                                                     }
                                                     """
                                     )

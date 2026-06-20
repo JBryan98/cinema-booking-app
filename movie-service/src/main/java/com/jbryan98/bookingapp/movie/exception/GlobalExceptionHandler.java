@@ -60,6 +60,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
+
+    @ExceptionHandler(AvailableSeatsExceedsTotalSeatsException.class)
+    protected ResponseEntity<Object> handleAvailableSeatsExceedsTotalSeatsException(AvailableSeatsExceedsTotalSeatsException ex, WebRequest request) {
+        var body = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+        body.setTitle("Screening available seats exceeds total seats");
+        return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
     @ExceptionHandler(InsufficientSeatsException.class)
     protected ResponseEntity<Object> handleScreeningAvailableSeatsException(InsufficientSeatsException ex, WebRequest request) {
         var body = ProblemDetail.forStatusAndDetail(HttpStatus.UNPROCESSABLE_CONTENT, ex.getMessage());

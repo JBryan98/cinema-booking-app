@@ -1,5 +1,6 @@
 package com.jbryan98.bookingapp.movie.domain.entity;
 
+import com.jbryan98.bookingapp.movie.exception.AvailableSeatsExceedsTotalSeatsException;
 import com.jbryan98.bookingapp.movie.exception.InsufficientSeatsException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +50,9 @@ public class Screening {
         screening.room = room;
         screening.movie = movie;
         screening.showAt = showAt;
+        if (availableSeats > totalSeats) {
+            throw new AvailableSeatsExceedsTotalSeatsException("Available seats cannot exceed total seats");
+        }
         screening.totalSeats = totalSeats;
         screening.availableSeats = availableSeats;
         return screening;
