@@ -53,10 +53,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(BookingAlreadyCancelledException.class)
-    protected ResponseEntity<Object> handleBookingAlreadyCancelledException(BookingAlreadyCancelledException ex, WebRequest request) {
+    @ExceptionHandler(BookingIllegalStateTransitionException.class)
+    protected ResponseEntity<Object> handleBookingIllegalStateTransitionException(BookingIllegalStateTransitionException ex, WebRequest request) {
         var body = ProblemDetail.forStatusAndDetail(HttpStatus.UNPROCESSABLE_CONTENT, ex.getMessage());
-        body.setTitle("Booking Already Cancelled");
+        body.setTitle("Booking Illegal State Transition");
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.UNPROCESSABLE_CONTENT, request);
     }
 

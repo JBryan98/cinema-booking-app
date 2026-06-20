@@ -1,6 +1,6 @@
 package com.jbryan98.bookingapp.booking.domain.entity;
 
-import com.jbryan98.bookingapp.booking.exception.BookingAlreadyCancelledException;
+import com.jbryan98.bookingapp.booking.exception.BookingIllegalStateTransitionException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -66,12 +66,15 @@ public class Booking {
     }
 
     public void confirm() {
+        if (status != BookingStatus.PENDING) {
+            throw new BookingIllegalStateTransitionException("Only pending bookings can be confirmed");
+        }
         this.status = BookingStatus.CONFIRMED;
     }
 
     public void cancel() {
         if (status.equals(BookingStatus.CANCELLED)) {
-            throw new BookingAlreadyCancelledException("Booking with id " + id + " is already cancelled");
+            throw new BookingIllegalStateTransitionException("Booking with id " + id + " is already cancelled");
         }
         this.status = BookingStatus.CANCELLED;
     }
