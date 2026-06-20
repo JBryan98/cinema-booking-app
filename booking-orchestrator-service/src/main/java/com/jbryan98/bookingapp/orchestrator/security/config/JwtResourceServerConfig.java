@@ -46,6 +46,8 @@ public class JwtResourceServerConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Actuator accesible sin token (health checks del orquestador de Docker)
                         .requestMatchers("/actuator/**").permitAll()
+                        // Swagger UI — documentación sin autenticación
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         // Todo lo demás requiere JWT válido
                         .anyRequest().authenticated()
                 )

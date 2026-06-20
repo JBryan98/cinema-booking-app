@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequestMapping("/booking-placements")
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
-public class BookingPlacementController {
+public class BookingPlacementController implements BookingPlacementControllerDocs{
 
     private final SagaOrchestrator orchestrator;
 
