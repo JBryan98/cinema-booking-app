@@ -23,9 +23,10 @@ Caso de negocio: Plataforma de reserva de cine donde clientes reservan asientos 
 
 | Servicio                       | Puerto | Descripción                      |
 |--------------------------------|--------|----------------------------------|
+| `api-gateway`                  | 51000  | Api Gateway de la aplicación     |
+| `auth-service`                 | 50003  | Servicio de autenticación JWT    |
 | `movie-service`                | 51100  | Gestión de películas y funciones |
 | `booking-service`              | 51200  | Gestión de reservas              |
-| `auth-service`                 | 50003  | Servicio de autenticación JWT    |
 | `booking-orchestrator-service` | 51400  | Orquestador SAGA                 |
 
 ---
@@ -66,12 +67,27 @@ colección de `Postman`. Por practicidad se recomienda asignar un error rate de 
 - Endpoint para asignar el error rate: http://localhost:51100/api/v1/chaos/error
 
 ---
-## Documentación con swagger
-- Cada servicio cuenta con su propia documentación en Swagger UI. Las rutas directas son:
-- `movie-service`: http://localhost:51100/api/v1/swagger-ui/index.html
-- `booking-service`: http://localhost:51200/api/v1/swagger-ui/index.html
-- `auth-service`: http://localhost:50003/swagger-ui/index.html
-- `booking-orchestrator-service`: http://localhost:51400/api/v1/swagger-ui/index.html
+## Documentación de la API
+La documentación OpenAPI de todos los microservicios se encuentra centralizada a través del API Gateway.
+Accede a la interfaz de Swagger desde:
+
+- http://localhost:51000/swagger-ui/index.html
+
+Desde la interfaz podrás seleccionar el microservicio que deseas consultar:
+
+- Movie Service
+- Booking Service
+- Booking Orchestrator Service
+- Auth Service
+
+### Endpoints OpenAPI
+
+Si necesitas acceder directamente al documento OpenAPI (JSON) de cada servicio, el API Gateway los expone en las siguientes rutas:
+- `GET /movie-service/api-docs`
+- `GET /booking-service/api-docs`
+- `GET /booking-orchestrator-service/api-docs`
+- `GET /auth-service/api-docs`
+
 
 ## Requisitos Previos
 
@@ -187,6 +203,7 @@ api → application → domain ← infrastructure
 spring-boot-cloud/
 ├── docker/                     ← infraestructura Docker
 ├── postman/                    ← colección Postman
+├── api-gateway/                
 ├── movie-service/
 ├── booking-service/
 ├── booking-orchestrator-service/
@@ -203,6 +220,7 @@ Las variables de colección ya están configuradas con los valores por defecto:
 
 | Variable                 | Valor por defecto        |
 |--------------------------|--------------------------|
+| `apiGatewayUrl`          | `http://localhost:51000` |
 | `movieServiceUrl`        | `http://localhost:51100` |
 | `bookingServiceUrl`      | `http://localhost:51200` |
 | `bookingOrchestratorUrl` | `http://localhost:51400` |
