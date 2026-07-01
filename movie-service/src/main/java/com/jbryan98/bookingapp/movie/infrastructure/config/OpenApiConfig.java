@@ -36,7 +36,7 @@ public class OpenApiConfig {
                                 )
                 )
                 .addServersItem(new Server()
-                        .url("http://localhost:51100/api/v1")
+                        .url("http://localhost:51000/api/v1")
                         .description("Servidor local"))
                 .addServersItem(new Server()
                         .url("http://qa.mitocode.com/api/v1")

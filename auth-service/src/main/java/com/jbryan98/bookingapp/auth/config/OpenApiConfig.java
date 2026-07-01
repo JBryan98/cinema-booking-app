@@ -56,7 +56,7 @@ public class OpenApiConfig {
                                         .url("https://www.mitocode.com/java-spring-boot-course"))
                 )
                 .addServersItem(new Server()
-                        .url("http://localhost:50003")
+                        .url("http://localhost:51000/api/v1")
                         .description("Local - desarrollo"))
                 .addServersItem(new Server()
                         .url("https://qa.auth-service.mitocode.com")
