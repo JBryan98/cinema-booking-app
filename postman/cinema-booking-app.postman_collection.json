@@ -15,12 +15,15 @@
             {
               "name": "getAllMovies",
               "request": {
+                "auth": {
+                  "type": "noauth"
+                },
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -62,9 +65,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -81,9 +84,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies/{{movieId}}",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -110,9 +113,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies/{{movieId}}",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -134,9 +137,9 @@
                   "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}/activate",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies/{{movieId}}/activate",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -159,9 +162,9 @@
                   "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}/deactivate",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies/{{movieId}}/deactivate",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -184,9 +187,9 @@
                   "raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"director\": \"Christopher Nolan\",\r\n    \"genre\": \"ACTION\",\r\n    \"durationMinutes\": 152,\r\n    \"rating\": \"PG-13\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/movies/{{movieId}}",
+                  "raw": "{{apiGatewayUrl}}/api/v1/movies/{{movieId}}",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -216,9 +219,9 @@
                   "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/screenings",
+                  "raw": "{{apiGatewayUrl}}/api/v1/screenings",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -260,9 +263,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/screenings",
+                  "raw": "{{apiGatewayUrl}}/api/v1/screenings",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -286,9 +289,9 @@
                   "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}",
+                  "raw": "{{apiGatewayUrl}}/api/v1/screenings/{{screeningId}}",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -310,9 +313,9 @@
                   "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}/reserve",
+                  "raw": "{{apiGatewayUrl}}/api/v1/screenings/{{screeningId}}/reserve",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -335,9 +338,9 @@
                   "raw": "{\r\n  \"title\": \"Gladiator\",\r\n  \"director\": \"Ridley Scott\",\r\n  \"genre\": \"ACTION\",\r\n  \"durationMinutes\": 155,\r\n  \"rating\": \"R\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{movieServiceUrl}}/api/v1/screenings/{{screeningId}}/release",
+                  "raw": "{{apiGatewayUrl}}/api/v1/screenings/{{screeningId}}/release",
                   "host": [
-                    "{{movieServiceUrl}}"
+                    "{{apiGatewayUrl}}"
                   ],
                   "path": [
                     "api",
@@ -562,9 +565,9 @@
               }
             },
             "url": {
-              "raw": "{{bookingServiceUrl}}/api/v1/bookings",
+              "raw": "{{apiGatewayUrl}}/api/v1/bookings",
               "host": [
-                "{{bookingServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -581,9 +584,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}",
+              "raw": "{{apiGatewayUrl}}/api/v1/bookings/{{bookingId}}",
               "host": [
-                "{{bookingServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -605,9 +608,9 @@
               "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": \"12.00\"\r\n}"
             },
             "url": {
-              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}/cancel",
+              "raw": "{{apiGatewayUrl}}/api/v1/bookings/{{bookingId}}/cancel",
               "host": [
-                "{{bookingServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -630,9 +633,9 @@
               "raw": "{\r\n  \"screeningId\": \"bf22f406-ff9f-4e66-9075-6ba45ace17a8\",\r\n  \"customerId\": \"14f97cf4-1204-47f0-ac9b-cb25fe0ab04c\",\r\n  \"totalAmount\": \"12.00\"\r\n}"
             },
             "url": {
-              "raw": "{{bookingServiceUrl}}/api/v1/bookings/{{bookingId}}/confirm",
+              "raw": "{{apiGatewayUrl}}/api/v1/bookings/{{bookingId}}/confirm",
               "host": [
-                "{{bookingServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -681,9 +684,9 @@
               }
             },
             "url": {
-              "raw": "{{bookingOrchestratorUrl}}/api/v1/booking-placements",
+              "raw": "{{apiGatewayUrl}}/api/v1/booking-placements",
               "host": [
-                "{{bookingOrchestratorUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -761,9 +764,9 @@
               }
             },
             "url": {
-              "raw": "{{authServiceUrl}}/api/v1/auth/login",
+              "raw": "{{apiGatewayUrl}}/api/v1/auth/login",
               "host": [
-                "{{authServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -784,11 +787,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{authServiceUrl}}/oauth2/jwks",
+              "raw": "{{apiGatewayUrl}}/api/v1/oauth2/jwks",
               "host": [
-                "{{authServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "oauth2",
                 "jwks"
               ]
@@ -802,11 +807,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{authServiceUrl}}/actuator/health",
+              "raw": "{{authServiceUrl}}/api/v1/actuator/health",
               "host": [
                 "{{authServiceUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "actuator",
                 "health"
               ]
@@ -829,9 +836,9 @@
               }
             },
             "url": {
-              "raw": "{{authServiceUrl}}/api/v1/auth/register",
+              "raw": "{{apiGatewayUrl}}/api/v1/auth/register",
               "host": [
-                "{{authServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -875,9 +882,9 @@
               }
             },
             "url": {
-              "raw": "{{authServiceUrl}}/api/v1/auth/refresh",
+              "raw": "{{apiGatewayUrl}}/api/v1/auth/refresh",
               "host": [
-                "{{authServiceUrl}}"
+                "{{apiGatewayUrl}}"
               ],
               "path": [
                 "api",
@@ -961,6 +968,10 @@
     },
     {
       "key": "bookingId",
+      "value": ""
+    },
+    {
+      "key": "apiGatewayUrl",
       "value": ""
     }
   ]
